@@ -19,7 +19,7 @@
           "prefixParameterInterfaces": true,
           "prependFormOrBodyParameters": true,
           "sortParamsByRequiredFlag": true,
-          "ngVersion": "19.1.7"
+          "ngVersion": "21.1.0"
         }
       }
     }
