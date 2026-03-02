@@ -1,0 +1,43 @@
+.mxs-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--mxs-shadow-2);
+  backdrop-filter: blur(10px);
+}
+
+.mxs-topbar-inner {
+  width: 100%;
+  max-width: var(--mxs-container);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+}
+
+.mxs-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.mxs-brand-icon {
+  opacity: 0.95;
+}
+
+.mxs-brand-title {
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  font-size: 16px;
+}
+
+.mxs-spacer {
+  flex: 1;
+}
+
+.mxs-login-btn {
+  border-radius: 999px;
+}

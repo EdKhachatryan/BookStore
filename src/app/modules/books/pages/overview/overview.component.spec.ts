@@ -1,4 +1,4 @@
-import { OverviewComponent } from '@app/overview/overview.component';
+import { OverviewComponent } from '@app/modules/books/pages/overview/overview.component';
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { BookstoreBffService } from '@openapi';
 
