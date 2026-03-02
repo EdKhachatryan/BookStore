@@ -7,5 +7,13 @@
         "ignorePseudoElements": ["ng-deep"]
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.component.scss"],
+      "rules": {
+        "no-empty-source": null
+      }
+    }
+  ]
 }
