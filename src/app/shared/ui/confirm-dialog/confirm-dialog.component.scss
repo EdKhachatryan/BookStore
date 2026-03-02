@@ -1,3 +1,23 @@
-:host {
-  display: block;
+@use 'sass:color';
+@use 'colors';
+
+/* Cancel button (neutral) */
+.confirm-dialog-cancel {
+  color: colors.$mxs-gray-700 !important;
+  font-weight: 600;
+}
+
+.confirm-dialog-cancel:hover {
+  background: colors.$mxs-gray-100 !important;
+}
+
+/* Confirm button (danger) */
+.confirm-dialog-confirm {
+  background: colors.$mxs-danger !important;
+  border-radius: 999px !important;
+  font-weight: 700;
+}
+
+.confirm-dialog-confirm:hover {
+  background: color.adjust(colors.$mxs-danger, $lightness: -6%) !important;
 }

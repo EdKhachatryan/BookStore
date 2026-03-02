@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
 @use 'typography';
+@use './colors' as *;
 
 @include mat.core;
 
@@ -17,6 +18,12 @@ $system-font-stack:
   'Apple Color Emoji',
   'Segoe UI Emoji',
   'Segoe UI Symbol';
+$mxs-container: 1100px;
+$mxs-gutter: 16px;
+$mxs-radius-1: 10px;
+$mxs-radius-2: 16px;
+$mxs-shadow-1: 0 6px 18px rgb(0 0 0 / 8%);
+$mxs-shadow-2: 0 10px 28px rgb(0 0 0 / 12%);
 $theme: mat.define-theme(
   (
     color: (
@@ -34,13 +41,6 @@ $theme: mat.define-theme(
 
 :root {
   @include mat.all-component-themes($theme);
-
-  --mxs-container: 1100px;
-  --mxs-radius-1: 10px;
-  --mxs-radius-2: 16px;
-  --mxs-shadow-1: 0 6px 18px rgb(0 0 0 / 8%);
-  --mxs-shadow-2: 0 10px 28px rgb(0 0 0 / 12%);
-  --mxs-font-sans: #{$system-font-stack};
 }
 
 * {
@@ -60,20 +60,66 @@ html {
 
 body {
   margin: 0;
-  background: #f6f7fb;
-  color: rgb(0 0 0 / 87%);
-  font-family: var(--mxs-font-sans);
+  background: $mxs-bg-app;
+  color: $mxs-gray-900;
+  font-family: $system-font-stack;
   font-size: 16px;
   line-height: 1.5;
 }
 
+/* Layout helpers */
 .mxs-container {
-  max-width: var(--mxs-container);
+  max-width: $mxs-container;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 $mxs-gutter;
 }
 
+.mxs-page {
+  padding: 18px 0 32px;
+}
+
+.mxs-stack {
+  display: grid;
+  gap: 16px;
+}
+
+/* Card refinement */
 .mat-mdc-card {
-  border-radius: var(--mxs-radius-2) !important;
-  box-shadow: var(--mxs-shadow-1) !important;
+  border-radius: $mxs-radius-2 !important;
+  box-shadow: $mxs-shadow-1 !important;
+  border: 1px solid $mxs-border-color;
+}
+
+/* Primary button override (removes Material purple) */
+.mat-mdc-unelevated-button {
+  background: $mxs-primary !important;
+  border-radius: 999px !important;
+  padding: 0 22px !important;
+  height: 42px !important;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.mat-mdc-unelevated-button:hover {
+  background: $mxs-primary-hover !important;
+}
+
+.mat-mdc-unelevated-button:active {
+  background: $mxs-primary-active !important;
+}
+
+/* Table + separators refinement */
+.mat-mdc-table .mat-mdc-header-row {
+  background: $mxs-gray-100;
+}
+
+.mat-mdc-table .mat-mdc-header-cell {
+  color: $mxs-gray-700;
+  font-weight: 600;
+  border-bottom: 1px solid $mxs-border-color;
+}
+
+.mat-mdc-table .mat-mdc-cell {
+  border-bottom: 1px solid $mxs-border-color;
+  color: $mxs-gray-900;
 }

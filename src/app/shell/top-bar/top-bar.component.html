@@ -1,15 +1,17 @@
-<mat-toolbar class="mxs-topbar" color="primary">
-  <div class="mxs-topbar-inner">
-    <a class="mxs-brand" routerLink="/">
+<mat-toolbar class="mxs-topbar">
+  <div class="mxs-container mxs-topbar-inner">
+    <a class="mxs-brand" [routerLink]="'/'">
       <mat-icon class="mxs-brand-icon" aria-hidden="true">auto_stories</mat-icon>
       <span class="mxs-brand-title">{{ 'app.title' | translate }}</span>
     </a>
 
-    <span class="mxs-spacer"></span>
+    <div class="mxs-topbar-actions">
+      <a mat-button class="mxs-topbar-link" [routerLink]="'list'"> {{ 'nav.books' | translate }} </a>
 
-    <button mat-flat-button class="mxs-login-btn" type="button">
-      <mat-icon>login</mat-icon>
-      {{ 'nav.login' | translate }}
-    </button>
+      <button mat-flat-button class="mxs-login-btn" type="button" routerLink="login">
+        <mat-icon>login</mat-icon>
+        <span class="mxs-login-label">{{ 'nav.login' | translate }}</span>
+      </button>
+    </div>
   </div>
 </mat-toolbar>

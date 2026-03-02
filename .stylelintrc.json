@@ -6,7 +6,19 @@
       {
         "ignorePseudoElements": ["ng-deep"]
       }
-    ]
+    ],
+
+    "selector-class-pattern": [
+      "^(?:(?:mat|mat-mdc|mdc|cdk)-.*|[a-z][a-z0-9-]*(?:__(?:[a-z0-9-]+))?(?:--(?:[a-z0-9-]+))?)$",
+      {
+        "message": "Expected class selector to be kebab-case (BEM __ and -- allowed). Material/MDC/CDK classes are allowed.",
+        "resolveNestedSelectors": true
+      }
+    ],
+
+    "scss/no-global-function-names": null,
+    "no-descending-specificity": null,
+    "no-duplicate-selectors": null
   },
   "overrides": [
     {

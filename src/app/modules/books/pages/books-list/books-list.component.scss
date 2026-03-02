@@ -1,0 +1,300 @@
+@use 'colors' as *;
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.books-list-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.books-list-header-text {
+  display: grid;
+  gap: 6px;
+}
+
+.books-list-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+.books-list-subtitle {
+  margin: 0;
+  opacity: 0.7;
+  color: $mxs-gray-700;
+}
+
+/* =====================================================
+   FILTERS
+===================================================== */
+
+.books-list-filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.books-list-filters > div:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* ================= SEARCH ================= */
+
+.books-list-search {
+  width: 340px;
+}
+
+/* Match button height */
+::ng-deep {
+  .books-list-filters-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .books-list-search {
+    width: 400px;
+  }
+
+  .books-list-search .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+
+  .books-list-search .mat-mdc-text-field-wrapper {
+    height: 42px;
+    border-radius: 8px;
+  }
+
+  .books-list-search .mat-mdc-form-field-flex {
+    height: 42px;
+    align-items: center;
+  }
+
+  .books-list-search .mat-mdc-form-field-infix {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: 42px !important;
+    display: flex;
+    align-items: center;
+  }
+
+  .books-list-search .mat-mdc-input-element {
+    height: 42px;
+    line-height: 20px;
+    padding: 0 !important;
+    margin: 0 !important;
+    transform: translateY(-1px);
+  }
+
+  .books-list-search .mat-mdc-floating-label {
+    color: $mxs-gray-500 !important;
+    font-weight: 600;
+  }
+
+  .books-list-search.mat-focused .mat-mdc-floating-label {
+    color: $mxs-primary !important;
+  }
+
+  .books-list-search .mdc-notched-outline__leading,
+  .books-list-search .mdc-notched-outline__notch,
+  .books-list-search .mdc-notched-outline__trailing {
+    border-color: $mxs-gray-500 !important;
+  }
+
+  .books-list-search .mdc-notched-outline__notch {
+    padding: 2px !important;
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+  }
+
+  .books-list-search.mat-focused .mdc-notched-outline__leading,
+  .books-list-search.mat-focused .mdc-notched-outline__notch,
+  .books-list-search.mat-focused .mdc-notched-outline__trailing {
+    border-color: $mxs-primary !important;
+  }
+
+  /* ===== Checkbox: ensure no purple accent leaks ===== */
+  .books-list-checkbox {
+    height: 42px;
+    display: flex;
+    align-items: center;
+  }
+
+  .books-list-checkbox .mdc-checkbox__background {
+    border-radius: 4px;
+    border: 2px solid $mxs-gray-400 !important;
+  }
+
+  .books-list-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background {
+    background-color: $mxs-primary !important;
+    border-color: $mxs-primary !important;
+  }
+
+  .books-list-checkbox:hover .mdc-checkbox__background {
+    border-color: $mxs-primary !important;
+  }
+
+  .books-list-checkbox .mdc-label {
+    font-weight: 600;
+    color: $mxs-gray-700;
+  }
+}
+
+/* ================= CHECKBOX ================= */
+
+/* Base */
+.mat-mdc-checkbox .mdc-checkbox__background {
+  border-radius: 4px;
+  border: 2px solid $mxs-gray-400 !important;
+}
+
+/* Checked */
+.mat-mdc-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background {
+  background-color: $mxs-primary !important;
+  border-color: $mxs-primary !important;
+}
+
+.mdc-checkbox__background {
+  background-color: $mxs-primary !important;
+  border-color: $mxs-primary !important;
+}
+
+::ng-deep {
+  .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background {
+    background-color: $mxs-primary !important;
+    border-color: $mxs-primary !important;
+  }
+}
+
+/* Hover */
+.mat-mdc-checkbox:hover .mdc-checkbox__background {
+  border-color: $mxs-primary !important;
+}
+
+/* Label */
+.mat-mdc-checkbox .mdc-form-field {
+  font-weight: 600;
+  color: $mxs-gray-700;
+}
+
+/* =====================================================
+   TABLE WRAPPER (ONE PIECE WITH PAGINATOR)
+===================================================== */
+
+.books-list-table-wrap {
+  border-radius: 16px;
+  background: $mxs-bg-card;
+  box-shadow: $mxs-shadow-soft;
+  overflow: hidden;
+  border: 1px solid $mxs-border-color;
+}
+
+/* Accent header background */
+.books-list-table .mat-mdc-header-row {
+  background: rgba($mxs-primary, 0.14);
+}
+
+.books-list-table .mat-mdc-header-cell {
+  font-weight: 800;
+  color: $mxs-gray-900;
+  border-bottom: 1px solid rgba($mxs-primary, 0.28);
+}
+
+/* Rows */
+.books-list-table .mat-mdc-cell {
+  border-bottom: 1px solid $mxs-border-color;
+  color: $mxs-gray-900;
+}
+
+.books-list-table .mat-mdc-row {
+  transition: background 120ms ease;
+}
+
+.books-list-table .mat-mdc-row:hover {
+  background: $mxs-gray-50;
+}
+
+/* Actions column */
+.books-list-actions-header {
+  width: 110px;
+}
+
+.books-list-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.books-list-actions button {
+  color: $mxs-gray-500;
+  transition: color 120ms ease;
+}
+
+.books-list-actions button:hover {
+  color: $mxs-gray-900;
+}
+
+.books-list-actions button:last-child:hover {
+  color: $mxs-danger;
+}
+
+/* =====================================================
+   PAGINATOR (VISUALLY MERGED)
+===================================================== */
+
+.books-list-paginator {
+  border-top: 1px solid $mxs-border-color;
+  background: $mxs-bg-card;
+}
+
+.books-list-paginator .mat-mdc-paginator-container {
+  padding: 10px 14px;
+}
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.books-list-loading {
+  padding: 28px 0;
+  text-align: center;
+  opacity: 0.7;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (width <= 900px) {
+  .books-list-search {
+    width: 260px;
+  }
+}
+
+@media (width <= 768px) {
+  .books-list-filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .books-list-filters > div:first-child {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .books-list-search {
+    width: 100%;
+  }
+}

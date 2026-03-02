@@ -40,7 +40,7 @@
       "pages": "Pages"
     },
 
-    "manage": {
+    "booksList": {
       "title": "Manage Books",
       "subtitle": "Create, edit and remove books from the catalog",
       "actions": {

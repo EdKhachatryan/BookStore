@@ -30,6 +30,9 @@
               }
             ],
             "styles": ["src/styles.scss", "node_modules/material-icons/iconfont/material-icons.css"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/assets/sass"]
+            },
             "scripts": []
           },
           "configurations": {
