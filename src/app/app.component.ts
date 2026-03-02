@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { AppShellComponent } from '@app/shell/app-shell/app-shell.component';
 import { TranslateService } from '@ngx-translate/core';
 
-import defaultLanguage from '../assets/i18n/da.json';
+import defaultLanguage from '../assets/i18n/en.json';
 
 @Component({
   selector: 'mxs-root',
@@ -10,13 +10,13 @@ import defaultLanguage from '../assets/i18n/da.json';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [AppShellComponent],
 })
 export class AppComponent {
   private translateService: TranslateService = inject(TranslateService);
 
   constructor() {
-    this.translateService.setTranslation('da', defaultLanguage);
-    this.translateService.setDefaultLang('da');
+    this.translateService.setTranslation('en', defaultLanguage);
+    this.translateService.setDefaultLang('en');
   }
 }

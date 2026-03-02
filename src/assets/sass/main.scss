@@ -1,0 +1,79 @@
+@use '@angular/material' as mat;
+@use 'typography';
+
+@include mat.core;
+
+$system-font-stack:
+  ui-sans-serif,
+  system-ui,
+  -apple-system,
+  blinkmacsystemfont,
+  'SF Pro Text',
+  'SF Pro Display',
+  'Segoe UI',
+  roboto,
+  helvetica,
+  arial,
+  'Apple Color Emoji',
+  'Segoe UI Emoji',
+  'Segoe UI Symbol';
+$theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+    ),
+    typography: (
+      brand-family: $system-font-stack,
+      plain-family: $system-font-stack,
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+:root {
+  @include mat.all-component-themes($theme);
+
+  --mxs-container: 1100px;
+  --mxs-radius-1: 10px;
+  --mxs-radius-2: 16px;
+  --mxs-shadow-1: 0 6px 18px rgb(0 0 0 / 8%);
+  --mxs-shadow-2: 0 10px 28px rgb(0 0 0 / 12%);
+  --mxs-font-sans: #{$system-font-stack};
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+}
+
+body {
+  margin: 0;
+  background: #f6f7fb;
+  color: rgb(0 0 0 / 87%);
+  font-family: var(--mxs-font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.mxs-container {
+  max-width: var(--mxs-container);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.mat-mdc-card {
+  border-radius: var(--mxs-radius-2) !important;
+  box-shadow: var(--mxs-shadow-1) !important;
+}

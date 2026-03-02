@@ -1,0 +1,9 @@
+.mxs-page {
+  padding: 24px 0 64px;
+}
+
+@media (width <= 768px) {
+  .mxs-page {
+    padding: 16px 0 48px;
+  }
+}

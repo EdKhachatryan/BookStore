@@ -1,0 +1,47 @@
+<section class="mxs-section">
+  <header class="mxs-section-header">
+    <div>
+      <h1 class="mxs-title">{{ 'books.title' | translate }}</h1>
+      <p class="mxs-subtitle">{{ 'books.subtitle' | translate }}</p>
+    </div>
+  </header>
+
+  <ng-container *ngIf="books$ | async as books; else loading">
+    <ng-container *ngIf="books.length > 0; else empty">
+      <div class="mxs-grid">
+        <mat-card class="mxs-book-card" *ngFor="let b of books; trackBy: trackByBookId">
+          <mat-card-header>
+            <mat-card-title class="mxs-book-card-title">{{ b.title }}</mat-card-title>
+            <mat-card-subtitle>
+              <span class="mxs-chip" [class.mxs-chip-sale]="b.onSale">
+                {{ (b.onSale ? 'books.status.onSale' : 'books.status.regular') | translate }}
+              </span>
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content class="mxs-book-card-content">
+            <div class="mxs-price">{{ b.price | currency: 'DKK' }}</div>
+            <div class="mxs-meta">{{ 'books.meta.pages' | translate }}: {{ b.pageCount }}</div>
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            <button mat-button type="button">{{ 'books.actions.view' | translate }}</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #loading>
+    <div class="mxs-state">
+      <mat-spinner diameter="36"></mat-spinner>
+      <div class="mxs-state-text">{{ 'common.loading' | translate }}</div>
+    </div>
+  </ng-template>
+
+  <ng-template #empty>
+    <div class="mxs-state">
+      <div class="mxs-state-text">{{ 'books.empty' | translate }}</div>
+    </div>
+  </ng-template>
+</section>

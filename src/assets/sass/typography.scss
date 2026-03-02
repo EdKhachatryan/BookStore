@@ -1,0 +1,62 @@
+:root {
+  --mxs-h1-size: clamp(28px, 2.2vw, 40px);
+  --mxs-h2-size: clamp(20px, 1.5vw, 28px);
+  --mxs-h3-size: 18px;
+  --mxs-body-size: 16px;
+  --mxs-small-size: 14px;
+  --mxs-letter-tight: -0.015em;
+  --mxs-letter-tighter: -0.02em;
+}
+
+body {
+  font-family: var(--mxs-font-sans);
+  font-size: var(--mxs-body-size);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--mxs-font-sans);
+  letter-spacing: var(--mxs-letter-tight);
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--mxs-h1-size);
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: var(--mxs-letter-tighter);
+}
+
+h2 {
+  font-size: var(--mxs-h2-size);
+  line-height: 1.2;
+  font-weight: 750;
+}
+
+h3 {
+  font-size: var(--mxs-h3-size);
+  line-height: 1.25;
+  font-weight: 750;
+}
+
+p {
+  margin: 0;
+}
+
+small {
+  font-size: var(--mxs-small-size);
+}
+
+.mat-mdc-card-title,
+.mat-mdc-card-subtitle,
+.mdc-button,
+.mat-mdc-button-base {
+  font-family: var(--mxs-font-sans);
+}
+
+.mat-mdc-card-title {
+  letter-spacing: var(--mxs-letter-tight);
+  font-weight: 800;
+}

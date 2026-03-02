@@ -1,1 +1,22 @@
-{}
+{
+  "app": {
+    "title": "Book Store"
+  },
+  "nav": {
+    "login": "Login"
+  },
+  "books": {
+    "title": "Books",
+    "subtitle": "Browse the catalog",
+    "status": {
+      "onSale": "On sale",
+      "regular": "Regular"
+    },
+    "actions": {
+      "view": "View"
+    },
+    "meta": {
+      "pages": "Pages"
+    }
+  }
+}
