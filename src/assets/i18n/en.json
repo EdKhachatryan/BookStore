@@ -2,21 +2,109 @@
   "app": {
     "title": "Book Store"
   },
+
   "nav": {
-    "login": "Login"
+    "login": "Login",
+    "books": "Books",
+    "manageBooks": "Manage Books"
   },
+
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "close": "Close",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "create": "Create",
+    "save": "Save",
+    "loading": "Loading..."
+  },
+
   "books": {
     "title": "Books",
     "subtitle": "Browse the catalog",
+
     "status": {
       "onSale": "On sale",
       "regular": "Regular"
     },
+
     "actions": {
-      "view": "View"
+      "view": "View",
+      "add": "Add Book",
+      "edit": "Edit",
+      "delete": "Delete"
     },
+
     "meta": {
       "pages": "Pages"
+    },
+
+    "manage": {
+      "title": "Manage Books",
+      "subtitle": "Create, edit and remove books from the catalog",
+      "actions": {
+        "add": "Add Book"
+      },
+      "filters": {
+        "search": "Search by title",
+        "onSaleOnly": "On sale only"
+      }
+    },
+
+    "table": {
+      "title": "Title",
+      "price": "Price",
+      "onSale": "On sale",
+      "pageCount": "Pages",
+      "actions": "Actions"
+    },
+
+    "details": {
+      "title": "Book Details",
+      "fields": {
+        "title": "Title",
+        "price": "Price",
+        "onSale": "On sale",
+        "pageCount": "Pages",
+        "lastUpdated": "Last updated",
+        "lastUpdatedBy": "Updated by"
+      }
+    },
+
+    "form": {
+      "createTitle": "Create Book",
+      "editTitle": "Edit Book",
+      "fields": {
+        "title": "Title",
+        "price": "Price",
+        "pageCount": "Pages",
+        "onSale": "On sale"
+      },
+      "errors": {
+        "titleRequired": "Title is required",
+        "priceRequired": "Price is required",
+        "priceMin": "Price must be greater than 0",
+        "pageCountRequired": "Page count is required",
+        "pageCountMin": "Page count must be at least 1",
+        "pageCountInteger": "Page count must be an integer"
+      }
+    },
+
+    "delete": {
+      "title": "Delete Book",
+      "message": "Are you sure you want to delete \"{{title}}\"?"
+    },
+
+    "snackbar": {
+      "loadListError": "Failed to load books",
+      "loadDetailsError": "Failed to load book details",
+      "createSuccess": "\"{{title}}\" was created successfully",
+      "createError": "Failed to create book",
+      "updateSuccess": "\"{{title}}\" was updated successfully",
+      "updateError": "Failed to update book",
+      "deleteSuccess": "\"{{title}}\" was deleted successfully",
+      "deleteError": "Failed to delete book"
     }
   }
 }

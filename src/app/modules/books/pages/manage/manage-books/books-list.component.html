@@ -1,0 +1,78 @@
+<section class="manage-header">
+  <div class="manage-header-text">
+    <h1 class="manage-title">{{ 'books.manage.title' | translate }}</h1>
+    <p class="manage-subtitle">{{ 'books.manage.subtitle' | translate }}</p>
+  </div>
+
+  <button mat-flat-button type="button" (click)="createBook()">
+    <mat-icon>add</mat-icon>
+    {{ 'books.manage.actions.add' | translate }}
+  </button>
+</section>
+
+<section class="manage-filters">
+  <mat-form-field appearance="outline" class="manage-search">
+    <mat-label>{{ 'books.manage.filters.search' | translate }}</mat-label>
+    <input matInput (input)="onSearch($any($event.target).value)" />
+  </mat-form-field>
+
+  <mat-checkbox (change)="onSaleToggle($event.checked)">
+    {{ 'books.manage.filters.onSaleOnly' | translate }}
+  </mat-checkbox>
+</section>
+
+<ng-container *ngIf="store.booksStatus() !== RequestStatus.Loading; else loading">
+  <div class="manage-table-wrap">
+    <table mat-table [dataSource]="store.pagedBooks()" class="manage-table">
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>{{ 'books.table.title' | translate }}</th>
+        <td mat-cell *matCellDef="let b">{{ b.title }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>{{ 'books.table.price' | translate }}</th>
+        <td mat-cell *matCellDef="let b">{{ b.price | currency: 'DKK' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="onSale">
+        <th mat-header-cell *matHeaderCellDef>{{ 'books.table.onSale' | translate }}</th>
+        <td mat-cell *matCellDef="let b">{{ (b.onSale ? 'common.yes' : 'common.no') | translate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="pageCount">
+        <th mat-header-cell *matHeaderCellDef>{{ 'books.table.pageCount' | translate }}</th>
+        <td mat-cell *matCellDef="let b">{{ b.pageCount }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="manage-actions-header"></th>
+        <td mat-cell *matCellDef="let b" class="manage-actions">
+          <button mat-icon-button type="button" (click)="editBook(b)" [attr.aria-label]="'edit ' + b.title">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button mat-icon-button type="button" (click)="deleteBook(b)" [attr.aria-label]="'delete ' + b.title">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <mat-paginator
+    [length]="store.totalFilteredBooks()"
+    [pageIndex]="store.pageIndex()"
+    [pageSize]="store.pageSize()"
+    [pageSizeOptions]="[5, 10, 25]"
+    (page)="pageChanged($event)"
+  />
+</ng-container>
+
+<ng-template #loading>
+  <div class="manage-loading">
+    {{ 'common.loading' | translate }}
+  </div>
+</ng-template>
