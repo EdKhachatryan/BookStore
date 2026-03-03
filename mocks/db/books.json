@@ -1,0 +1,173 @@
+[
+  {
+    "id": "xyxqwe1-23456789-345678",
+    "lastUpdated": "2022-05-18T09:30:45Z",
+    "lastUpdatedBy": "Emily Thompson",
+    "onSale": true,
+    "pageCount": "412",
+    "price": "79",
+    "title": "The Forgotten Echo"
+  },
+  {
+    "id": "xyxqwe1-98765432-123456",
+    "lastUpdated": "2023-01-02T14:27:19Z",
+    "lastUpdatedBy": "Daniel Rodriguez",
+    "onSale": false,
+    "pageCount": "287",
+    "price": "42",
+    "title": "Whispering Shadows"
+  },
+  {
+    "id": "xyxqwe1-56789012-098765",
+    "lastUpdated": "2021-11-30T18:55:08Z",
+    "lastUpdatedBy": "Sophia Johnson",
+    "onSale": true,
+    "pageCount": "356",
+    "price": "65",
+    "title": "The Enigma Key"
+  },
+  {
+    "id": "xyxqwe1-34567890-987654",
+    "lastUpdated": "2023-03-21T11:40:15Z",
+    "lastUpdatedBy": "Michael Smith",
+    "onSale": true,
+    "pageCount": "512",
+    "price": "89",
+    "title": "Silent Whispers"
+  },
+  {
+    "id": "xyxqwe1-87654321-210987",
+    "lastUpdated": "2022-09-07T08:15:32Z",
+    "lastUpdatedBy": "Emma Thompson",
+    "onSale": false,
+    "pageCount": "241",
+    "price": "52",
+    "title": "Crimson Tides"
+  },
+  {
+    "id": "xyxqwe1-45678901-789012",
+    "lastUpdated": "2023-04-11T15:20:57Z",
+    "lastUpdatedBy": "Benjamin Davis",
+    "onSale": true,
+    "pageCount": "385",
+    "price": "73",
+    "title": "Eternal Nightfall"
+  },
+  {
+    "id": "xyxqwe1-09876543-210987",
+    "lastUpdated": "2021-12-15T17:48:23Z",
+    "lastUpdatedBy": "Olivia Anderson",
+    "onSale": true,
+    "pageCount": "299",
+    "price": "49",
+    "title": "Whispers of Destiny"
+  },
+  {
+    "id": "xyxqwe1-67890123-987654",
+    "lastUpdated": "2023-06-28T13:10:39Z",
+    "lastUpdatedBy": "William Wilson",
+    "onSale": false,
+    "pageCount": "432",
+    "price": "68",
+    "title": "The Silent Witness"
+  },
+  {
+    "id": "xyxqwe1-32109876-876543",
+    "lastUpdated": "2022-03-07T10:25:14Z",
+    "lastUpdatedBy": "Mia Johnson",
+    "onSale": true,
+    "pageCount": "317",
+    "price": "54",
+    "title": "Secrets Unveiled"
+  },
+  {
+    "id": "xyxqwe1-76543210-123456",
+    "lastUpdated": "2023-02-14T16:55:20Z",
+    "lastUpdatedBy": "Jacob Brown",
+    "onSale": true,
+    "pageCount": "278",
+    "price": "47",
+    "title": "Midnight Whispers"
+  },
+  {
+    "id": "xyxqwe1-23456789-098765",
+    "lastUpdated": "2022-08-02T12:40:33Z",
+    "lastUpdatedBy": "Samantha Davis",
+    "onSale": false,
+    "pageCount": "421",
+    "price": "82",
+    "title": "Echoes of the Past"
+  },
+  {
+    "id": "xyxqwe1-98765432-345678",
+    "lastUpdated": "2023-05-09T09:15:48Z",
+    "lastUpdatedBy": "Ethan Wilson",
+    "onSale": true,
+    "pageCount": "367",
+    "price": "61",
+    "title": "Whispering Secrets"
+  },
+  {
+    "id": "xyxqwe1-56789012-210987",
+    "lastUpdated": "2021-10-28T14:35:54Z",
+    "lastUpdatedBy": "Ava Thompson",
+    "onSale": true,
+    "pageCount": "306",
+    "price": "57",
+    "title": "The Vanishing Shadows"
+  },
+  {
+    "id": "xyxqwe1-34567890-876543",
+    "lastUpdated": "2023-01-12T18:20:10Z",
+    "lastUpdatedBy": "Noah Anderson",
+    "onSale": false,
+    "pageCount": "399",
+    "price": "75",
+    "title": "The Hidden Key"
+  },
+  {
+    "id": "xyxqwe1-87654321-098765",
+    "lastUpdated": "2022-06-19T08:45:27Z",
+    "lastUpdatedBy": "Sophie Martin",
+    "onSale": true,
+    "pageCount": "278",
+    "price": "48",
+    "title": "Whispers in the Dark"
+  },
+  {
+    "id": "xyxqwe1-45678901-987654",
+    "lastUpdated": "2023-03-08T15:50:43Z",
+    "lastUpdatedBy": "Liam Thompson",
+    "onSale": true,
+    "pageCount": "342",
+    "price": "69",
+    "title": "The Enchanted Whisper"
+  },
+  {
+    "id": "xyxqwe1-09876543-654321",
+    "lastUpdated": "2022-01-25T17:05:59Z",
+    "lastUpdatedBy": "Isabella Wilson",
+    "onSale": false,
+    "pageCount": "235",
+    "price": "53",
+    "title": "Silent Shadows"
+  },
+  {
+    "id": "xyxqwe1-67890123-321098",
+    "lastUpdated": "2023-07-01T12:15:05Z",
+    "lastUpdatedBy": "James Davis",
+    "onSale": true,
+    "pageCount": "416",
+    "price": "77",
+    "title": "The Whispering Rose"
+  },
+  {
+    "id": "xyxqwe1-32109876-765432",
+    "lastUpdated": "2022-04-14T09:30:22Z",
+    "lastUpdatedBy": "Grace Thompson",
+    "onSale": true,
+    "pageCount": "299",
+    "price": "55",
+    "title": "The Secret Scroll"
+  }
+]

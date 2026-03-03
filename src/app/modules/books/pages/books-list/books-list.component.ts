@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,7 +12,8 @@ import { ConfirmService } from '@app/shared/services/confirm/confirm.service';
 import { Book } from '@core/models/book.model';
 import { RequestStatus } from '@core/models/request.status';
 import { TranslateModule } from '@ngx-translate/core';
-import { filter } from 'rxjs/operators';
+import { EMPTY, take } from 'rxjs';
+import { catchError, filter, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'mxs-manage-books',
@@ -38,7 +38,6 @@ export class BooksListComponent {
   private readonly confirm = inject(ConfirmService);
 
   public readonly RequestStatus = RequestStatus;
-
   public readonly displayedColumns = ['title', 'price', 'onSale', 'pageCount', 'actions'] as const;
 
   public constructor() {
@@ -61,21 +60,30 @@ export class BooksListComponent {
     return book.id ?? String(index);
   }
 
-  // Point 4 will implement create/edit dialog service.
   public createBook(): void {
-    // TODO: BookDialogService.openCreate() -> store.createBookRequest(...)
+    // TODO
   }
 
   public editBook(book: Book): void {
-    // TODO: BookDialogService.openEdit(book) -> store.updateBookRequest(...)
+    // TODO
   }
 
   public deleteBook(book: Book): void {
     this.confirm
-      .confirmDeleteBook(book.title)
-      .pipe(takeUntilDestroyed(), filter(Boolean))
-      .subscribe(() => {
-        this.store.deleteBookRequest(book).pipe(takeUntilDestroyed()).subscribe();
-      });
+      .confirmDelete('books.delete.title', 'books.delete.message', { title: book.title ?? '' })
+      .pipe(
+        take(1),
+        filter(Boolean),
+        switchMap(() => {
+          if (!book.id) {
+            this.store.notifyDeleteFailed();
+            return EMPTY;
+          }
+
+          return this.store.deleteBookRequest(book);
+        }),
+        catchError(() => EMPTY)
+      )
+      .subscribe();
   }
 }

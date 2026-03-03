@@ -1,4 +1,4 @@
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { computed, DestroyRef, inject, Injectable, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   Book,
@@ -19,6 +19,7 @@ import { toBook, toCreateBookDto, toUpdateBookDto } from './books.mapper';
 export class BooksStore {
   private readonly api = inject(BookstoreBffService);
   private readonly notify = inject(NotificationService);
+  private readonly destroyRef = inject(DestroyRef);
 
   private readonly _booksStatus = signal<RequestStatusType>(RequestStatus.Idle);
   private readonly _bookDetailsStatus = signal<RequestStatusType>(RequestStatus.Idle);
@@ -72,11 +73,11 @@ export class BooksStore {
   public loadBooks(): void {
     if (this._booksStatus() === RequestStatus.Success || this._booksStatus() === RequestStatus.Loading) return;
 
-    this.loadBooksRequest().pipe(takeUntilDestroyed()).subscribe();
+    this.loadBooksRequest().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
 
   public refreshBooks(): void {
-    this.loadBooksRequest().pipe(takeUntilDestroyed()).subscribe();
+    this.loadBooksRequest().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
 
   public loadBooksRequest(): Observable<Book[]> {
@@ -182,14 +183,21 @@ export class BooksStore {
     );
   }
 
+  public notifyDeleteFailed(): void {
+    this.notify.error('books.snackbar.deleteError');
+  }
+
   public deleteBookRequest(book: Book): Observable<void> {
+    if (!book?.id) {
+      this.notifyDeleteFailed();
+      return EMPTY;
+    }
+
     this._saving.set(true);
 
     return this.api.deleteBook({ bookId: book.id }).pipe(
       map(() => void 0),
-      tap(() => {
-        this.notify.success('books.snackbar.deleteSuccess', { title: book.title });
-      }),
+      tap(() => this.notify.success('books.snackbar.deleteSuccess', { title: book.title ?? '' })),
       tap(() => this.refreshBooks()),
       finalize(() => this._saving.set(false)),
       catchError(() => {

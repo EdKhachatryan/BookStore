@@ -55,7 +55,13 @@
             <mat-icon>edit</mat-icon>
           </button>
 
-          <button mat-icon-button type="button" (click)="deleteBook(b)" [attr.aria-label]="'delete ' + b.title">
+          <button
+            mat-icon-button
+            type="button"
+            (click)="deleteBook(b)"
+            [disabled]="store.saving()"
+            [attr.aria-label]="'delete ' + b.title"
+          >
             <mat-icon>delete</mat-icon>
           </button>
         </td>
