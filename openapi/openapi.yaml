@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: BookStoreBff
-  version: 1.0.7
+  version: 1.0.8
   description: This .yaml file is for educational purposes only.
 servers:
   - url: http://localhost:3001/book-store-bff
@@ -11,7 +11,32 @@ servers:
     description: mock server
   - url: http://localhost:8080
     description: local dev server
+
 paths:
+  /v1/auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login
+      description: Logs in a user and returns a bearer token + user profile (mock/fake auth).
+      operationId: login
+      requestBody:
+        description: Login credentials
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loginRequest'
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loginResponse'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+
   /v1/books/{bookId}:
     summary: Path used to manage a single book.
     description: The REST endpoint/path used to get, update, and delete single instances of an `book`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.
@@ -35,6 +60,8 @@ paths:
       summary: Get a book
       description: Gets the details of a `book`.
     put:
+      security:
+        - bearerAuth: []
       requestBody:
         description: Updated `book` information.
         content:
@@ -53,17 +80,23 @@ paths:
           description: The book is updated
         '400':
           $ref: '#/components/responses/inputError'
+        '401':
+          $ref: '#/components/responses/unauthorized'
         '404':
           $ref: '#/components/responses/notFound'
       operationId: updateBook
       summary: Update a book
       description: Updates an existing `book`.
     delete:
+      security:
+        - bearerAuth: []
       tags:
         - BookstoreBff
       responses:
         '204':
           $ref: '#/components/responses/DELETE_success'
+        '401':
+          $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/DELETE_forbidden'
         '404':
@@ -78,6 +111,7 @@ paths:
           type: string
         in: path
         required: true
+
   /v1/books:
     summary: Path used to manage the list of books.
     description: The REST endpoint/path used to list and create zero or more `book` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.
@@ -105,7 +139,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/book'
           description: Successful response - returns an array of books
-        '403':
+        '401':
           $ref: '#/components/responses/unauthorized'
         '404':
           $ref: '#/components/responses/notFound'
@@ -113,6 +147,8 @@ paths:
       summary: Get list of books
       description: Gets a list of books based on true/false value of onSale.
     post:
+      security:
+        - bearerAuth: []
       requestBody:
         description: A new `book` to be created.
         content:
@@ -131,11 +167,61 @@ paths:
           description: Successful response.
         '400':
           $ref: '#/components/responses/inputError'
+        '401':
+          $ref: '#/components/responses/unauthorized'
       operationId: createBook
       summary: Create a book
       description: Creates a new instance of a `book`.
+
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
   schemas:
+    loginRequest:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          description: Username
+          example: admin
+        password:
+          type: string
+          description: Password
+          example: admin
+
+    loginUser:
+      type: object
+      required:
+        - username
+        - displayName
+      properties:
+        username:
+          type: string
+          example: admin
+        displayName:
+          type: string
+          example: Admin User
+
+    loginResponse:
+      type: object
+      required:
+        - token
+        - user
+      properties:
+        token:
+          type: string
+          description: Bearer token (mock)
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.mock.payload.signature
+        user:
+          $ref: '#/components/schemas/loginUser'
+
     errorMessage:
       description: An error message
       required:
@@ -167,6 +253,7 @@ components:
           format: date-time
           type: string
           example: '2022-09-27T11:31:59.986Z'
+
     book:
       description: The default book object
       required:
@@ -205,6 +292,7 @@ components:
         pageCount: 224
         lastUpdated: 1601901810913
         lastUpdatedBy: xxx-user
+
     bookCreate:
       description: Fields available for creating a book
       required:
@@ -231,6 +319,7 @@ components:
         onSale: true
         pageCount: 224
         price: 60.55
+
     bookUpdate:
       description: Fields needed for updating a book
       required:
@@ -264,6 +353,7 @@ components:
         onSale: true
         pageCount: 224
         price: 60.55
+
   responses:
     badRequest:
       content:
@@ -271,30 +361,35 @@ components:
           schema:
             $ref: '#/components/schemas/errorMessage'
       description: Bad input from user
+
     notFound:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/errorMessage'
       description: The resource was not found
+
     conflict:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/errorMessage'
       description: The resource was altered since last read
+
     serverException:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/errorMessage'
       description: Server error
+
     unauthorized:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/errorMessage'
-      description: ''
+      description: Unauthorized
+
     inputError:
       content:
         application/json:
@@ -313,6 +408,7 @@ components:
                     identifier: identifier
                 timestamp: '2022-09-27T11:31:59.986Z'
       description: ''
+
     GET_book_forbidden:
       content:
         application/json:
@@ -328,8 +424,10 @@ components:
                     identifier: free-user
                 timestamp: '2022-09-27T11:31:59.986Z'
       description: This response is returned, when you are not permitted to get a book.
+
     DELETE_success:
       description: Successfully deletion of book
+
     DELETE_forbidden:
       content:
         application/json:
@@ -345,5 +443,7 @@ components:
                     identifier: free-user
                 timestamp: '2022-09-27T11:31:59.986Z'
       description: Not allowed to delete book
+
 tags:
   - name: BookstoreBff
+  - name: Auth

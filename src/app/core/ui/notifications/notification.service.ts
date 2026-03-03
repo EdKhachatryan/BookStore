@@ -14,4 +14,8 @@ export class NotificationService {
   error(key: string, params?: Record<string, unknown>): void {
     this.snackBar.open(this.translate.instant(key, params), undefined, { duration: 4000 });
   }
+
+  warning(key: string, params?: Record<string, unknown>): void {
+    this.snackBar.open(this.translate.instant(key, params), undefined, { duration: 4000 });
+  }
 }

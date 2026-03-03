@@ -87,3 +87,134 @@
     gap: 8px;
   }
 }
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+.mxs-topbar {
+  background: white !important;
+  border-bottom: 1px solid $mxs-border-color;
+  box-shadow: $mxs-shadow-soft;
+}
+
+.mxs-topbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.mxs-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: $mxs-gray-900;
+}
+
+.mxs-brand-icon {
+  color: $mxs-primary;
+}
+
+.mxs-brand-title {
+  font-weight: 800;
+  font-size: 18px;
+}
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.mxs-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Books link */
+.mxs-topbar-link {
+  font-weight: 600;
+  color: $mxs-gray-700 !important;
+}
+
+.mxs-topbar-link:hover {
+  color: $mxs-primary !important;
+}
+
+/* =====================================================
+   LOGIN BUTTON
+===================================================== */
+
+::ng-deep .mxs-login-btn.mat-mdc-unelevated-button {
+  height: 38px;
+  border-radius: 10px;
+  background-color: $mxs-primary !important;
+  color: white !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+/* Remove purple ripple */
+::ng-deep .mxs-login-btn .mat-mdc-button-ripple {
+  display: none;
+}
+
+/* =====================================================
+   USER CHIP
+===================================================== */
+
+.mxs-user-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: 14px;
+  background: $mxs-gray-50;
+  border: 1px solid $mxs-border-color;
+  transition: all 150ms ease;
+}
+
+.mxs-user-chip:hover {
+  background: white;
+  box-shadow: $mxs-shadow-soft;
+}
+
+.mxs-user-icon {
+  color: $mxs-primary;
+}
+
+.mxs-user-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.mxs-user-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: $mxs-gray-900;
+}
+
+.mxs-user-username {
+  font-size: 12px;
+  color: $mxs-gray-700;
+}
+
+/* =====================================================
+   LOGOUT BUTTON
+===================================================== */
+
+::ng-deep .mxs-logout-btn {
+  color: $mxs-gray-500 !important;
+  transition: color 120ms ease;
+}
+
+::ng-deep .mxs-logout-btn:hover {
+  color: $mxs-danger !important;
+}
