@@ -25,7 +25,7 @@
 
       <div class="details-row" *ngIf="data.book.lastUpdated">
         <div class="details-label">{{ 'books.details.fields.lastUpdated' | translate }}</div>
-        <div class="details-value">{{ data.book.lastUpdated }}</div>
+        <div class="details-value">{{ toDate(data.book.lastUpdated) }}</div>
       </div>
 
       <div class="details-row" *ngIf="data.book.id">

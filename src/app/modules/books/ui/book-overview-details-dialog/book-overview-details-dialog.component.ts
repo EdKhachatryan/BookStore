@@ -25,4 +25,9 @@ export class BookOverviewDetailsDialogComponent {
   public close(): void {
     this.ref.close();
   }
+
+  public toDate(dateUnix: number): string {
+    const date = new Date(dateUnix);
+    return date.toLocaleDateString();
+  }
 }

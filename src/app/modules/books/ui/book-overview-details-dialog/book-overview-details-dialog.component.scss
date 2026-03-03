@@ -99,6 +99,7 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 4px;
+  align-items: end;
 }
 
 :host ::ng-deep .details-actions button[mat-flat-button] {
