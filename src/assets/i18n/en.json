@@ -25,6 +25,20 @@
     }
   },
 
+  "auth": {
+    "login": {
+      "title": "Login",
+      "subtitle": "Sign in to manage books",
+      "username": "Username",
+      "password": "Password",
+      "submit": "Login"
+    },
+    "logout": "Logout",
+    "loginRequired": "Please login to access this page",
+    "invalidCredentials": "Invalid username or password",
+    "loginSuccess": "Welcome, {{name}}"
+  },
+
   "books": {
     "title": "Books",
     "subtitle": "Browse the catalog",

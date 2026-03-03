@@ -51,4 +51,4 @@ Thumbs.db
 .npmrc
 openapi/generated
 
-/mocks/db/*
+/mocks/db/books.json

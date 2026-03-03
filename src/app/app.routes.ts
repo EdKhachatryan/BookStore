@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from '@core/guards/auth.guard';
 import { booksInitResolver } from '@core/resolvers/ books-init.resolver';
 
 export const routes: Routes = [
@@ -10,6 +11,7 @@ export const routes: Routes = [
   {
     path: 'list',
     resolve: { booksReady: booksInitResolver },
+    canActivate: [authGuard],
     loadComponent: () =>
       import('@app/modules/books/pages/books-list/books-list.component').then(m => m.BooksListComponent),
   },
