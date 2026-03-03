@@ -42,10 +42,6 @@ export class BooksListComponent {
   public readonly RequestStatus = RequestStatus;
   public readonly displayedColumns = ['title', 'price', 'onSale', 'pageCount', 'actions'] as const;
 
-  public constructor() {
-    this.store.loadBooks();
-  }
-
   public onSearch(value: string): void {
     this.store.setBooksSearch(value);
   }

@@ -1,0 +1,11 @@
+<article class="book-card" (click)="onClick()" tabindex="0" role="button">
+  <div class="book-card-media">
+    <img class="book-card-img" [src]="imageUrl" alt="" loading="lazy" />
+
+    <div class="book-card-badge" *ngIf="book.onSale">On sale</div>
+  </div>
+
+  <div class="book-card-body">
+    <div class="book-card-title">{{ book.title }}</div>
+  </div>
+</article>

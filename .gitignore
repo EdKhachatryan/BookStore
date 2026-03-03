@@ -50,3 +50,5 @@ Thumbs.db
 
 .npmrc
 openapi/generated
+
+/mocks/db/*
