@@ -1,6 +1,17 @@
 import { Book, CreateBookPayload, UpdateBookPayload } from '@app/core/models/book.model';
 import { BookCreateDTO, BookDTO, BookUpdateDTO } from '@openapi';
 
+function toEpochMs(value: unknown): number | undefined {
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
+
+  if (typeof value === 'string') {
+    const parsed = Date.parse(value);
+    return Number.isFinite(parsed) ? parsed : undefined;
+  }
+
+  return undefined;
+}
+
 export function toBook(dto: BookDTO): Book {
   return {
     id: dto.id,
@@ -8,7 +19,7 @@ export function toBook(dto: BookDTO): Book {
     price: dto.price ?? 0,
     onSale: dto.onSale ?? false,
     pageCount: dto.pageCount ?? 0,
-    lastUpdated: dto.lastUpdated as string,
+    lastUpdated: toEpochMs(dto.lastUpdated),
     lastUpdatedBy: dto.lastUpdatedBy ?? undefined,
   };
 }
@@ -28,6 +39,6 @@ export function toUpdateBookDto(payload: UpdateBookPayload): BookUpdateDTO {
     price: payload.price,
     onSale: payload.onSale,
     pageCount: payload.pageCount,
-    lastUpdated: payload.lastUpdated as unknown as number, //todo fix on open api level
+    lastUpdated: payload.lastUpdated,
   };
 }

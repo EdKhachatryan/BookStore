@@ -8,12 +8,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { BooksStore } from '@app/modules/books/data/books.store';
+import { BooksDialogService } from '@app/modules/books/services/books-dialog/books-dialog.service';
 import { ConfirmService } from '@app/shared/services/confirm/confirm.service';
 import { Book } from '@core/models/book.model';
 import { RequestStatus } from '@core/models/request.status';
 import { TranslateModule } from '@ngx-translate/core';
-import { EMPTY, take } from 'rxjs';
-import { catchError, filter, switchMap } from 'rxjs/operators';
+import { EMPTY } from 'rxjs';
+import { catchError, filter, switchMap, take } from 'rxjs/operators';
 
 @Component({
   selector: 'mxs-manage-books',
@@ -36,6 +37,7 @@ import { catchError, filter, switchMap } from 'rxjs/operators';
 export class BooksListComponent {
   public readonly store = inject(BooksStore);
   private readonly confirm = inject(ConfirmService);
+  private readonly dialogs = inject(BooksDialogService);
 
   public readonly RequestStatus = RequestStatus;
   public readonly displayedColumns = ['title', 'price', 'onSale', 'pageCount', 'actions'] as const;
@@ -56,16 +58,28 @@ export class BooksListComponent {
     this.store.setBooksPage(e.pageIndex, e.pageSize);
   }
 
-  public trackByBookId(index: number, book: Book): string {
-    return book.id ?? String(index);
-  }
-
   public createBook(): void {
-    // TODO
+    this.dialogs
+      .openCreate()
+      .pipe(
+        take(1),
+        filter((r): r is { mode: 'create'; payload: any } => !!r && r.mode === 'create'),
+        switchMap(r => this.store.createBookRequest(r.payload)),
+        catchError(() => EMPTY)
+      )
+      .subscribe();
   }
 
   public editBook(book: Book): void {
-    // TODO
+    this.dialogs
+      .openEdit(book)
+      .pipe(
+        take(1),
+        filter((r): r is { mode: 'edit'; bookId: string; payload: any } => !!r && r.mode === 'edit'),
+        switchMap(r => this.store.updateBookRequest(r.bookId, r.payload)),
+        catchError(() => EMPTY)
+      )
+      .subscribe();
   }
 
   public deleteBook(book: Book): void {
@@ -74,14 +88,7 @@ export class BooksListComponent {
       .pipe(
         take(1),
         filter(Boolean),
-        switchMap(() => {
-          if (!book.id) {
-            this.store.notifyDeleteFailed();
-            return EMPTY;
-          }
-
-          return this.store.deleteBookRequest(book);
-        }),
+        switchMap(() => this.store.deleteBookRequest(book)),
         catchError(() => EMPTY)
       )
       .subscribe();

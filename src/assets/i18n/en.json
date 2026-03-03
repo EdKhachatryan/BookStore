@@ -17,7 +17,12 @@
     "delete": "Delete",
     "create": "Create",
     "save": "Save",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "validation": {
+      "required": "This field is required",
+      "min": "Minimum value is {{min}}",
+      "maxLength": "Maximum length is {{max}}"
+    }
   },
 
   "books": {
@@ -79,7 +84,11 @@
         "title": "Title",
         "price": "Price",
         "pageCount": "Pages",
-        "onSale": "On sale"
+        "onSale": "On sale",
+        "lastUpdatedBy": "Updated by"
+      },
+      "hints": {
+        "lastUpdatedBy": "Optional field"
       },
       "errors": {
         "titleRequired": "Title is required",

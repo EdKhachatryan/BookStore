@@ -1,0 +1,27 @@
+@use 'colors' as *;
+
+.book-form {
+  display: grid;
+  gap: 14px;
+  padding-top: 6px;
+}
+
+.book-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (width <= 520px) {
+  .book-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+:host ::ng-deep .mat-mdc-checkbox.mat-accent {
+  --mdc-checkbox-selected-checkmark-color: #fff;
+  --mdc-checkbox-selected-focus-icon-color: #{$mxs-danger};
+  --mdc-checkbox-selected-hover-icon-color: #{$mxs-danger};
+  --mdc-checkbox-selected-icon-color: #{$mxs-danger};
+  --mdc-checkbox-selected-pressed-icon-color: #{$mxs-danger};
+}

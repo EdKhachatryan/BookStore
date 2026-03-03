@@ -6,7 +6,7 @@ export interface Book {
   price: number;
   onSale: boolean;
   pageCount: number;
-  lastUpdated: string;
+  lastUpdated?: number;
   lastUpdatedBy?: string;
 }
 
@@ -22,7 +22,7 @@ export interface UpdateBookPayload {
   price: number;
   onSale: boolean;
   pageCount: number;
-  lastUpdated: string;
+  lastUpdated: number;
 }
 
 export interface CreateBookRequestParams {
