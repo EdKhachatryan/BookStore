@@ -41,10 +41,6 @@ export class OverviewComponent implements AfterViewInit, OnDestroy {
   public readonly allBooks = computed(() => this.store.filteredBooks());
   public readonly visibleBooks = computed(() => this.allBooks().slice(0, this.visibleCount()));
 
-  public constructor() {
-    this.store.init();
-  }
-
   public ngAfterViewInit(): void {
     this.io = new IntersectionObserver(
       entries => {
