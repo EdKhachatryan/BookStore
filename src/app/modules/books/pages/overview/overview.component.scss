@@ -1,3 +1,5 @@
+@use 'colors' as *;
+
 .mxs-section-header {
   display: flex;
   align-items: flex-end;
@@ -91,4 +93,52 @@
 
 .mxs-state-text {
   opacity: 0.75;
+}
+
+.overview-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.overview-header-text {
+  display: grid;
+  gap: 6px;
+}
+
+.overview-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+.overview-subtitle {
+  margin: 0;
+  opacity: 0.7;
+  color: $mxs-gray-700;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.overview-sentinel {
+  height: 1px;
+}
+
+@media (width <= 1000px) {
+  .overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width <= 650px) {
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,0 +1,41 @@
+<div class="details">
+  <div class="details-left">
+    <img class="details-img" [src]="data.imageUrl" alt="" />
+    <div class="details-sale" *ngIf="data.book.onSale">On sale</div>
+  </div>
+
+  <div class="details-right">
+    <div class="details-title">{{ data.book.title }}</div>
+
+    <div class="details-list">
+      <div class="details-row">
+        <div class="details-label">{{ 'books.details.fields.price' | translate }}</div>
+        <div class="details-value">{{ data.book.price | currency: 'DKK' }}</div>
+      </div>
+
+      <div class="details-row">
+        <div class="details-label">{{ 'books.details.fields.pageCount' | translate }}</div>
+        <div class="details-value">{{ data.book.pageCount }}</div>
+      </div>
+
+      <div class="details-row" *ngIf="data.book.lastUpdatedBy">
+        <div class="details-label">{{ 'books.details.fields.lastUpdatedBy' | translate }}</div>
+        <div class="details-value">{{ data.book.lastUpdatedBy }}</div>
+      </div>
+
+      <div class="details-row" *ngIf="data.book.lastUpdated">
+        <div class="details-label">{{ 'books.details.fields.lastUpdated' | translate }}</div>
+        <div class="details-value">{{ data.book.lastUpdated }}</div>
+      </div>
+
+      <div class="details-row" *ngIf="data.book.id">
+        <div class="details-label">ID</div>
+        <div class="details-value details-mono">{{ data.book.id }}</div>
+      </div>
+    </div>
+
+    <div class="details-actions">
+      <button mat-flat-button type="button" (click)="close()">{{ 'common.close' | translate }}</button>
+    </div>
+  </div>
+</div>

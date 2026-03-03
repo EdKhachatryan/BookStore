@@ -43,7 +43,7 @@ export class BooksListComponent {
   public readonly displayedColumns = ['title', 'price', 'onSale', 'pageCount', 'actions'] as const;
 
   public constructor() {
-    this.store.loadBooks();
+    this.store.init();
   }
 
   public onSearch(value: string): void {

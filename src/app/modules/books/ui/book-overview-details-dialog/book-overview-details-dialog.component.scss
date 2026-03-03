@@ -1,0 +1,125 @@
+@use 'colors' as *;
+
+:host ::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+
+:host ::ng-deep .mat-mdc-dialog-content {
+  max-height: none !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+/* layout */
+.details {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  min-height: 360px;
+  background: $mxs-bg-card;
+}
+
+/* left */
+.details-left {
+  position: relative;
+  background: $mxs-gray-50;
+}
+
+.details-img {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+  display: block;
+}
+
+.details-sale {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 12px;
+  background: rgba($mxs-success, 0.92);
+  color: white;
+  box-shadow: 0 8px 20px rgb(10 20 40 / 16%);
+}
+
+/* right */
+.details-right {
+  padding: 18px 18px 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.details-title {
+  font-weight: 950;
+  letter-spacing: -0.3px;
+  font-size: 22px;
+  color: $mxs-gray-900;
+}
+
+.details-list {
+  display: grid;
+  gap: 10px;
+}
+
+.details-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid $mxs-border-color;
+  border-radius: 12px;
+  background: rgba($mxs-gray-50, 0.6);
+}
+
+.details-label {
+  font-weight: 800;
+  color: $mxs-gray-700;
+  font-size: 12px;
+}
+
+.details-value {
+  font-weight: 900;
+  color: $mxs-gray-900;
+  letter-spacing: -0.15px;
+}
+
+.details-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-weight: 800;
+  font-size: 12px;
+  opacity: 0.9;
+  word-break: break-all;
+}
+
+.details-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+:host ::ng-deep .details-actions button[mat-flat-button] {
+  height: 42px;
+  border-radius: 10px;
+  font-weight: 900;
+  background: $mxs-primary !important;
+  color: white !important;
+}
+
+/* responsive */
+@media (width <= 820px) {
+  .details {
+    grid-template-columns: 1fr;
+  }
+
+  .details-img {
+    min-height: 220px;
+  }
+
+  .details-row {
+    grid-template-columns: 130px 1fr;
+  }
+}

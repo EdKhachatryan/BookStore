@@ -52,10 +52,7 @@ export class BooksStore {
     const s = this._search().trim().toLowerCase();
     let list = this._allBooks();
 
-    if (s) {
-      list = list.filter(b => (b.title ?? '').toLowerCase().includes(s));
-    }
-
+    if (s) list = list.filter(b => (b.title ?? '').toLowerCase().includes(s));
     return list;
   });
 
@@ -67,29 +64,32 @@ export class BooksStore {
   });
 
   public constructor() {
-    effect(() => {
-      if (!this._initialized()) return;
-      this._onSaleOnly();
+    effect(
+      () => {
+        if (!this._initialized()) return;
 
-      this._pageIndex.set(0);
-      this.loadBooksRequest().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
-    });
+        const onSale = this._onSaleOnly();
+        this._pageIndex.set(0);
+
+        this.loadBooksRequest(onSale).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
+      },
+      { allowSignalWrites: true }
+    );
   }
 
-  public loadBooks(): void {
+  public init(): void {
     if (this._initialized()) return;
-
     this._initialized.set(true);
   }
 
   public refreshBooks(): void {
-    this.loadBooksRequest().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
+    this.loadBooksRequest(this._onSaleOnly()).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
 
-  public loadBooksRequest(): Observable<Book[]> {
+  private loadBooksRequest(onSale: boolean): Observable<Book[]> {
     this._booksStatus.set(RequestStatus.Loading);
 
-    return this.api.getBooks({ onSale: this._onSaleOnly() }).pipe(
+    return this.api.getBooks({ onSale }).pipe(
       map(list => list.map(toBook)),
       tap(books => {
         this._allBooks.set(books);
@@ -112,7 +112,6 @@ export class BooksStore {
 
   public setBooksOnSaleOnly(value: boolean): void {
     this._onSaleOnly.set(value);
-    this._initialized.set(true);
   }
 
   public setBooksPage(pageIndex: number, pageSize: number): void {
@@ -153,9 +152,7 @@ export class BooksStore {
 
     return this.api.createBook(params).pipe(
       map(toBook),
-      tap(created => {
-        this.notify.success('books.snackbar.createSuccess', { title: created.title });
-      }),
+      tap(created => this.notify.success('books.snackbar.createSuccess', { title: created.title })),
       tap(() => this.refreshBooks()),
       finalize(() => this._saving.set(false)),
       catchError(() => {
@@ -217,8 +214,6 @@ export class BooksStore {
     const size = this._pageSize();
     const lastIndex = total === 0 ? 0 : Math.floor((total - 1) / size);
 
-    if (this._pageIndex() > lastIndex) {
-      this._pageIndex.set(lastIndex);
-    }
+    if (this._pageIndex() > lastIndex) this._pageIndex.set(lastIndex);
   }
 }
