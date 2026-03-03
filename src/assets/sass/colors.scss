@@ -1,0 +1,33 @@
+/* =========================================================
+   Book Store – Color Palette
+   ========================================================= */
+
+/* Primary */
+$mxs-primary: #6ec1e4;
+$mxs-primary-hover: #5ab3d6;
+$mxs-primary-active: #4aa5c9;
+
+/* Success */
+$mxs-success: #5cb85c;
+$mxs-success-soft: #eaf7ea;
+
+/* Error */
+$mxs-danger: #d9534f;
+
+/* Grays */
+$mxs-gray-50: #f8f9fb;
+$mxs-gray-100: #f2f4f7;
+$mxs-gray-200: #e6e9ee;
+$mxs-gray-300: #d5d9e0;
+$mxs-gray-400: #a0a6b2;
+$mxs-gray-500: #6b7280;
+$mxs-gray-700: #374151;
+$mxs-gray-900: #111827;
+
+/* Borders & Backgrounds */
+$mxs-border-color: $mxs-gray-200;
+$mxs-bg-app: $mxs-gray-50;
+$mxs-bg-card: #fff;
+
+/* Shadows */
+$mxs-shadow-soft: 0 6px 18px rgb(0 0 0 / 6%);

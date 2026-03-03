@@ -266,7 +266,9 @@ export default [
   })),
   {
     files: ['**/*.html'],
-    rules: {},
+    rules: {
+      '@angular-eslint/template/prefer-control-flow': 'off',
+    },
   },
   ...compat.extends('plugin:jest/recommended').map(config => ({
     ...config,

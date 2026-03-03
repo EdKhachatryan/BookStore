@@ -1,4 +1,4 @@
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { computed, DestroyRef, effect, inject, Injectable, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   Book,
@@ -19,6 +19,9 @@ import { toBook, toCreateBookDto, toUpdateBookDto } from './books.mapper';
 export class BooksStore {
   private readonly api = inject(BookstoreBffService);
   private readonly notify = inject(NotificationService);
+  private readonly destroyRef = inject(DestroyRef);
+
+  private readonly _initialized = signal<boolean>(false);
 
   private readonly _booksStatus = signal<RequestStatusType>(RequestStatus.Idle);
   private readonly _bookDetailsStatus = signal<RequestStatusType>(RequestStatus.Idle);
@@ -47,13 +50,7 @@ export class BooksStore {
 
   public readonly filteredBooks = computed(() => {
     const s = this._search().trim().toLowerCase();
-    const onSaleOnly = this._onSaleOnly();
-
     let list = this._allBooks();
-
-    if (onSaleOnly) {
-      list = list.filter(b => b.onSale);
-    }
 
     if (s) {
       list = list.filter(b => (b.title ?? '').toLowerCase().includes(s));
@@ -69,20 +66,30 @@ export class BooksStore {
     return this.filteredBooks().slice(start, start + this._pageSize());
   });
 
-  public loadBooks(): void {
-    if (this._booksStatus() === RequestStatus.Success || this._booksStatus() === RequestStatus.Loading) return;
+  public constructor() {
+    effect(() => {
+      if (!this._initialized()) return;
+      this._onSaleOnly();
 
-    this.loadBooksRequest().pipe(takeUntilDestroyed()).subscribe();
+      this._pageIndex.set(0);
+      this.loadBooksRequest().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
+    });
+  }
+
+  public loadBooks(): void {
+    if (this._initialized()) return;
+
+    this._initialized.set(true);
   }
 
   public refreshBooks(): void {
-    this.loadBooksRequest().pipe(takeUntilDestroyed()).subscribe();
+    this.loadBooksRequest().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
 
   public loadBooksRequest(): Observable<Book[]> {
     this._booksStatus.set(RequestStatus.Loading);
 
-    return this.api.getBooks({ onSale: false }).pipe(
+    return this.api.getBooks({ onSale: this._onSaleOnly() }).pipe(
       map(list => list.map(toBook)),
       tap(books => {
         this._allBooks.set(books);
@@ -105,8 +112,7 @@ export class BooksStore {
 
   public setBooksOnSaleOnly(value: boolean): void {
     this._onSaleOnly.set(value);
-    this._pageIndex.set(0);
-    this.ensureValidPage();
+    this._initialized.set(true);
   }
 
   public setBooksPage(pageIndex: number, pageSize: number): void {
@@ -182,14 +188,21 @@ export class BooksStore {
     );
   }
 
+  public notifyDeleteFailed(): void {
+    this.notify.error('books.snackbar.deleteError');
+  }
+
   public deleteBookRequest(book: Book): Observable<void> {
+    if (!book?.id) {
+      this.notifyDeleteFailed();
+      return EMPTY;
+    }
+
     this._saving.set(true);
 
     return this.api.deleteBook({ bookId: book.id }).pipe(
       map(() => void 0),
-      tap(() => {
-        this.notify.success('books.snackbar.deleteSuccess', { title: book.title });
-      }),
+      tap(() => this.notify.success('books.snackbar.deleteSuccess', { title: book.title ?? '' })),
       tap(() => this.refreshBooks()),
       finalize(() => this._saving.set(false)),
       catchError(() => {

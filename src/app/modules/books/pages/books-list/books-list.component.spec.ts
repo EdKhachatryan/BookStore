@@ -1,18 +1,18 @@
 // eslint-disable-next-line no-restricted-imports
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManageBooksComponent } from './manage-books.component';
+import { BooksListComponent } from './books-list.component';
 
 describe('ManageBooksComponent', () => {
-  let component: ManageBooksComponent;
-  let fixture: ComponentFixture<ManageBooksComponent>;
+  let component: BooksListComponent;
+  let fixture: ComponentFixture<BooksListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ManageBooksComponent],
+      imports: [BooksListComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ManageBooksComponent);
+    fixture = TestBed.createComponent(BooksListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

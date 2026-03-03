@@ -21,11 +21,15 @@ export class ConfirmService {
       .pipe(map(result => result === true));
   }
 
-  public confirmDeleteBook(title: string | null | undefined): Observable<boolean> {
+  public confirmDelete(
+    titleKey: string,
+    messageKey: string,
+    messageParams?: Record<string, unknown>
+  ): Observable<boolean> {
     return this.confirm({
-      titleKey: 'books.delete.title',
-      messageKey: 'books.delete.message',
-      messageParams: { title: title ?? '' },
+      titleKey,
+      messageKey,
+      messageParams,
       confirmKey: 'common.delete',
       cancelKey: 'common.cancel',
       confirmIsDestructive: true,

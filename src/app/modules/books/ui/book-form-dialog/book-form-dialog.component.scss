@@ -1,0 +1,204 @@
+@use 'colors' as *;
+
+:host {
+  display: block;
+}
+
+/* =====================================================
+   DIALOG LAYOUT (remove scrollbars)
+===================================================== */
+
+/* Kill Material default max-height/scroll on dialog content */
+:host ::ng-deep .mat-mdc-dialog-content {
+  max-height: none !important;
+  overflow: hidden !important;
+  padding-top: 10px;
+}
+
+/* Nice dialog surface (optional but helps to match your card style) */
+:host ::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+
+/* Title spacing */
+:host ::ng-deep .mat-mdc-dialog-title {
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  margin: 0;
+  padding: 18px 20px 8px;
+}
+
+/* Content padding */
+:host ::ng-deep .mat-mdc-dialog-content {
+  padding: 0 20px 6px !important;
+}
+
+/* Actions padding */
+:host ::ng-deep .mat-mdc-dialog-actions {
+  padding: 10px 20px 18px !important;
+  margin: 0;
+}
+
+/* =====================================================
+   FORM LAYOUT
+===================================================== */
+
+.book-form {
+  display: grid;
+  gap: 14px;
+  padding: 6px 0 10px;
+}
+
+.book-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (width <= 720px) {
+  .book-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =====================================================
+   FORM FIELDS (same look as books list search)
+===================================================== */
+
+:host ::ng-deep {
+  /* hide subscript (hint/errors area still appears when error shows) */
+  .book-form .mat-mdc-form-field-subscript-wrapper {
+    min-height: 0;
+  }
+
+  /* Default field wrapper */
+  .book-form .mat-mdc-text-field-wrapper {
+    height: 42px;
+    border-radius: 8px;
+  }
+
+  .book-form .mat-mdc-form-field-flex {
+    height: 42px;
+    align-items: center;
+  }
+
+  .book-form .mat-mdc-form-field-infix {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: 42px !important;
+    display: flex;
+    align-items: center;
+  }
+
+  .book-form .mat-mdc-input-element {
+    height: 42px;
+    line-height: 20px;
+    padding: 0 !important;
+    margin: 0 !important;
+    transform: translateY(-1px);
+  }
+
+  /* Label colors: no purple */
+  .book-form .mat-mdc-floating-label {
+    color: $mxs-gray-500 !important;
+    font-weight: 600;
+  }
+
+  .book-form .mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
+    color: $mxs-primary !important;
+  }
+
+  /* Outline colors: no purple */
+  .book-form .mdc-notched-outline__leading,
+  .book-form .mdc-notched-outline__notch,
+  .book-form .mdc-notched-outline__trailing {
+    border-color: $mxs-gray-500 !important;
+  }
+
+  .book-form .mdc-notched-outline__notch {
+    padding: 2px !important;
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+  }
+
+  .book-form .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+  .book-form .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+  .book-form .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+    border-color: $mxs-primary !important;
+  }
+
+  /* Error styles (keep clean) */
+  .book-form .mat-mdc-form-field-error {
+    margin-top: 6px;
+    font-weight: 600;
+  }
+
+  /* Hint style (if you add it later) */
+  .book-form .mat-mdc-form-field-hint {
+    margin-top: 6px;
+    opacity: 0.75;
+  }
+}
+
+/* =====================================================
+   CHECKBOX (no purple)
+===================================================== */
+
+:host ::ng-deep {
+  .book-form .mat-mdc-checkbox {
+    margin-top: 4px;
+  }
+
+  .book-form .mdc-checkbox__background {
+    border-radius: 4px;
+    border: 2px solid $mxs-gray-400 !important;
+  }
+
+  .book-form .mat-mdc-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background {
+    background-color: $mxs-primary !important;
+    border-color: $mxs-primary !important;
+  }
+
+  .book-form .mat-mdc-checkbox:hover .mdc-checkbox__background {
+    border-color: $mxs-primary !important;
+  }
+
+  .book-form .mdc-label {
+    font-weight: 600;
+    color: $mxs-gray-700;
+  }
+}
+
+/* =====================================================
+   ACTION BUTTONS (match app theme + remove purple)
+===================================================== */
+
+:host ::ng-deep {
+  .mat-mdc-dialog-actions button {
+    height: 42px;
+    border-radius: 10px;
+    font-weight: 800;
+    letter-spacing: -0.1px;
+  }
+
+  /* Cancel button (neutral) */
+  .mat-mdc-dialog-actions button[mat-button] {
+    color: $mxs-gray-700 !important;
+  }
+
+  .mat-mdc-dialog-actions button[mat-button]:hover {
+    background: rgba($mxs-gray-900, 0.06) !important;
+  }
+
+  /* Primary submit button */
+  .mat-mdc-dialog-actions button[mat-flat-button] {
+    background: $mxs-primary !important;
+    color: white !important;
+  }
+
+  .mat-mdc-dialog-actions button[mat-flat-button]:disabled {
+    opacity: 0.55;
+  }
+}

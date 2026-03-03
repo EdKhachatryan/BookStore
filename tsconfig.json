@@ -24,7 +24,21 @@
       "@mocks/*": ["./mocks/*"],
       "@openapi": ["./openapi/generated/index"],
       "@core/*": ["./src/app/core/*"],
-      "@env/*": ["./src/environments/*"]
+      "@env/*": ["./src/environments/*"],
+
+      "@models/*": ["./src/app/core/models/*"],
+
+      "@shared/*": ["./src/app/shared/*"],
+      "@ui/*": ["./src/app/shared/ui/*"],
+      "@services/*": ["./src/app/shared/services/*"],
+      "@shared-models/*": ["./src/app/shared/models/*"],
+
+      "@modules/*": ["./src/app/modules/*"],
+      "@books/*": ["./src/app/modules/books/*"],
+
+      "@assets/*": ["./src/assets/*"],
+      "@sass/*": ["./src/assets/sass/*"],
+      "@i18n/*": ["./src/assets/i18n/*"]
     }
   },
   "exclude": ["dist", "output"],
