@@ -215,6 +215,7 @@
 .books-list-table .mat-mdc-cell {
   border-bottom: 1px solid $mxs-border-color;
   color: $mxs-gray-900;
+  height: inherit;
 }
 
 .books-list-table .mat-mdc-row {
@@ -235,6 +236,7 @@
   display: flex;
   justify-content: flex-end;
   gap: 6px;
+  align-items: center;
 }
 
 .books-list-actions button {
