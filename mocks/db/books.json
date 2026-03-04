@@ -1,21 +1,21 @@
 [
   {
-    "id": "mxs-597710181-617323854",
-    "lastUpdated": "2026-03-03T03:21:33.902Z",
+    "id": "mxs-897626402-539967612",
+    "lastUpdated": "2026-03-04T10:00:11.876Z",
     "lastUpdatedBy": "Admin User",
-    "onSale": true,
-    "pageCount": "100",
-    "price": "10",
-    "title": "New Book"
+    "onSale": false,
+    "pageCount": "1",
+    "price": "3",
+    "title": "sdfsdf"
   },
   {
-    "id": "mxs-413004084-908204367",
-    "lastUpdated": "2026-03-03T01:49:47.484Z",
-    "lastUpdatedBy": "Mock Server",
+    "id": "mxs-597710181-617323854",
+    "lastUpdated": "2026-03-04T09:59:29.303Z",
+    "lastUpdatedBy": "Admin User",
     "onSale": true,
-    "pageCount": "700",
-    "price": "65.4",
-    "title": "test"
+    "pageCount": "103",
+    "price": "10",
+    "title": "New Book"
   },
   {
     "id": "xyxqwe1-23456789-345678",

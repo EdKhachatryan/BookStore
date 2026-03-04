@@ -1,12 +1,25 @@
 <mat-toolbar class="mxs-topbar">
   <div class="mxs-container mxs-topbar-inner">
     <a class="mxs-brand" [routerLink]="'/'">
-      <mat-icon class="mxs-brand-icon" aria-hidden="true">auto_stories</mat-icon>
+      <mat-icon class="mxs-brand-icon">auto_stories</mat-icon>
       <span class="mxs-brand-title">{{ 'app.title' | translate }}</span>
     </a>
 
     <div class="mxs-topbar-actions">
-      <a mat-button class="mxs-topbar-link" [routerLink]="'list'"> {{ 'nav.books' | translate }} </a>
+      <a mat-button class="mxs-topbar-link" [routerLink]="'list'">
+        {{ 'nav.books' | translate }}
+      </a>
+
+      <!-- LANGUAGE SWITCH -->
+      <button mat-icon-button [matMenuTriggerFor]="langMenu" aria-label="Language">
+        <mat-icon>language</mat-icon>
+      </button>
+
+      <mat-menu #langMenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="setLanguage('en')">🇬🇧 English</button>
+
+        <button mat-menu-item (click)="setLanguage('da')">🇩🇰 Dansk</button>
+      </mat-menu>
 
       <!-- LOGIN BUTTON -->
       <button mat-flat-button class="mxs-login-btn" type="button" *ngIf="!authStore.isLoggedIn()" (click)="openLogin()">
@@ -19,11 +32,15 @@
         <mat-icon class="mxs-user-icon">account_circle</mat-icon>
 
         <div class="mxs-user-info">
-          <span class="mxs-user-name"> {{ authStore.user()?.displayName }} </span>
-          <span class="mxs-user-username"> {{ authStore.user()?.username }} </span>
+          <span class="mxs-user-name">
+            {{ authStore.user()?.displayName }}
+          </span>
+          <span class="mxs-user-username">
+            {{ authStore.user()?.username }}
+          </span>
         </div>
 
-        <button mat-icon-button class="mxs-logout-btn" type="button" (click)="logout()" [attr.aria-label]="'Logout'">
+        <button mat-icon-button class="mxs-logout-btn" type="button" (click)="logout()">
           <mat-icon>logout</mat-icon>
         </button>
       </div>

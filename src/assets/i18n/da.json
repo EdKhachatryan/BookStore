@@ -1,1 +1,133 @@
-{}
+{
+  "app": {
+    "title": "Boekwinkel"
+  },
+
+  "nav": {
+    "login": "Inloggen",
+    "books": "Boeken",
+    "manageBooks": "Boeken beheren"
+  },
+
+  "common": {
+    "yes": "Ja",
+    "no": "Nee",
+    "close": "Sluiten",
+    "cancel": "Annuleren",
+    "delete": "Verwijderen",
+    "create": "Aanmaken",
+    "save": "Opslaan",
+    "loading": "Laden...",
+    "validation": {
+      "required": "Dit veld is verplicht",
+      "min": "Minimale waarde is {{min}}",
+      "maxLength": "Maximale lengte is {{max}}"
+    }
+  },
+
+  "auth": {
+    "login": {
+      "title": "Inloggen",
+      "subtitle": "Log in om boeken te beheren",
+      "username": "Gebruikersnaam",
+      "password": "Wachtwoord",
+      "submit": "Inloggen"
+    },
+    "logout": "Uitloggen",
+    "loginRequired": "Log in om deze pagina te bekijken",
+    "invalidCredentials": "Ongeldige gebruikersnaam of wachtwoord",
+    "loginSuccess": "Welkom, {{name}}"
+  },
+
+  "books": {
+    "title": "Boeken",
+    "subtitle": "Bekijk de catalogus",
+
+    "status": {
+      "onSale": "In de aanbieding",
+      "regular": "Normaal"
+    },
+
+    "actions": {
+      "view": "Bekijken",
+      "add": "Boek toevoegen",
+      "edit": "Bewerken",
+      "delete": "Verwijderen"
+    },
+
+    "meta": {
+      "pages": "Pagina's"
+    },
+
+    "booksList": {
+      "title": "Boeken beheren",
+      "subtitle": "Boeken in de catalogus aanmaken, bewerken en verwijderen",
+      "actions": {
+        "add": "Boek toevoegen"
+      },
+      "filters": {
+        "search": "Zoeken op titel",
+        "onSaleOnly": "Alleen aanbiedingen"
+      }
+    },
+
+    "table": {
+      "title": "Titel",
+      "price": "Prijs",
+      "onSale": "In aanbieding",
+      "pageCount": "Pagina's",
+      "actions": "Acties"
+    },
+
+    "details": {
+      "title": "Boekdetails",
+      "fields": {
+        "title": "Titel",
+        "price": "Prijs",
+        "onSale": "In aanbieding",
+        "pageCount": "Pagina's",
+        "lastUpdated": "Laatst bijgewerkt",
+        "lastUpdatedBy": "Bijgewerkt door"
+      }
+    },
+
+    "form": {
+      "createTitle": "Boek aanmaken",
+      "editTitle": "Boek bewerken",
+      "fields": {
+        "title": "Titel",
+        "price": "Prijs",
+        "pageCount": "Pagina's",
+        "onSale": "In aanbieding",
+        "lastUpdatedBy": "Bijgewerkt door"
+      },
+      "hints": {
+        "lastUpdatedBy": "Optioneel veld"
+      },
+      "errors": {
+        "titleRequired": "Titel is verplicht",
+        "priceRequired": "Prijs is verplicht",
+        "priceMin": "Prijs moet groter zijn dan 0",
+        "pageCountRequired": "Aantal pagina's is verplicht",
+        "pageCountMin": "Aantal pagina's moet minimaal 1 zijn",
+        "pageCountInteger": "Aantal pagina's moet een geheel getal zijn"
+      }
+    },
+
+    "delete": {
+      "title": "Boek verwijderen",
+      "message": "Weet je zeker dat je \"{{title}}\" wilt verwijderen?"
+    },
+
+    "snackbar": {
+      "loadListError": "Laden van boeken mislukt",
+      "loadDetailsError": "Laden van boekdetails mislukt",
+      "createSuccess": "\"{{title}}\" is succesvol aangemaakt",
+      "createError": "Aanmaken van boek mislukt",
+      "updateSuccess": "\"{{title}}\" is succesvol bijgewerkt",
+      "updateError": "Bijwerken van boek mislukt",
+      "deleteSuccess": "\"{{title}}\" is succesvol verwijderd",
+      "deleteError": "Verwijderen van boek mislukt"
+    }
+  }
+}
