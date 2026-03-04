@@ -1,7 +1,3 @@
-import textwrap, os, datetime, json, re, pathlib
-
-content = """\
-
 # Angular Migration Guide
 
 This document describes how to migrate this project across Angular major versions in a **safe, repeatable** way.
@@ -354,11 +350,3 @@ npm run start:mock
 # openapi regenerate (if script exists)
 npm run openapi:generate
 ```
-
-"""
-
-out_path = "/mnt/data/Angular_MIGRATION.md"
-with open(out_path, "w", encoding="utf-8") as f:
-f.write(content)
-
-out_path
