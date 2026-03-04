@@ -1,5 +1,5 @@
-import { computed, DestroyRef, effect, inject, Injectable, Injector, signal } from '@angular/core';
-import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { computed, effect, inject, Injectable, Injector, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import {
   Book,
   CreateBookPayload,
@@ -19,7 +19,6 @@ import { toBook, toCreateBookDto, toUpdateBookDto } from './books.mapper';
 export class BooksStore {
   private readonly api = inject(BookstoreBffService);
   private readonly notify = inject(NotificationService);
-  private readonly destroyRef = inject(DestroyRef);
   private readonly injector = inject(Injector);
 
   private readonly _initialized = signal(false);
@@ -54,10 +53,9 @@ export class BooksStore {
 
   public readonly filteredBooks = computed(() => {
     const s = this._search().trim().toLowerCase();
-    let list = this._allBooks();
-
-    if (s) list = list.filter(b => (b.title ?? '').toLowerCase().includes(s));
-    return list;
+    const list = this._allBooks();
+    if (!s) return list;
+    return list.filter(b => (b.title ?? '').toLowerCase().includes(s));
   });
 
   public readonly totalFilteredBooks = computed(() => this.filteredBooks().length);
@@ -72,7 +70,7 @@ export class BooksStore {
       if (!this._initialized()) return;
 
       const onSale = this._onSaleOnly();
-      this._reloadToken(); // dependency
+      this._reloadToken();
 
       this._booksStatus.set(RequestStatus.Loading);
 
@@ -83,15 +81,14 @@ export class BooksStore {
           tap(books => {
             this._allBooks.set(books);
             this._booksStatus.set(RequestStatus.Success);
-            this._pageIndex.set(0);
+            this._pageIndex.set(0); // keep your current behavior
             this.ensureValidPage();
           }),
           catchError(() => {
             this._booksStatus.set(RequestStatus.Error);
             this.notify.error('books.snackbar.loadListError');
             return EMPTY;
-          }),
-          takeUntilDestroyed(this.destroyRef)
+          })
         )
         .subscribe();
 

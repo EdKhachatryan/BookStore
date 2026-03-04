@@ -7,6 +7,14 @@ import { AuthService as OpenApiAuthService, LoginResponseDTO } from '@openapi';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
+type LoginResponseCompat = LoginResponseDTO & {
+  accessToken?: string;
+  tokenType?: string;
+  expiresIn?: number;
+
+  token?: string;
+};
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly api = inject(OpenApiAuthService);
@@ -16,25 +24,10 @@ export class AuthService {
 
   public login(payload: LoginPayload): Observable<void> {
     return this.api.login({ loginRequestDTO: payload } as any).pipe(
-      tap((res: LoginResponseDTO) => {
-        const anyRes = res as any;
-
-        const accessToken: string | undefined = anyRes.accessToken ?? anyRes.token;
-        const user = anyRes.user;
-
-        if (!accessToken || !user) {
-          throw new Error('Invalid login response: missing token/user');
-        }
-
-        this.authStore.setSession({
-          accessToken,
-          tokenType: anyRes.tokenType ?? 'Bearer',
-          expiresIn: anyRes.expiresIn ?? 3600,
-          user,
-        });
-      }),
+      map(res => this.normalizeLoginResponse(res as LoginResponseCompat)),
+      tap(session => this.authStore.setSession(session)),
       map(() => void 0),
-      catchError(() => {
+      catchError(err => {
         this.notify.error('auth.snackbar.loginFailed');
         return EMPTY;
       })
@@ -44,5 +37,21 @@ export class AuthService {
   public logout(): void {
     this.authStore.clearSession();
     this.router.navigateByUrl('/');
+  }
+
+  private normalizeLoginResponse(res: LoginResponseCompat) {
+    const accessToken = res.accessToken ?? res.token;
+    const user = (res as any).user;
+
+    if (!accessToken || !user) {
+      throw new Error('Invalid login response: missing token/user');
+    }
+
+    return {
+      accessToken,
+      tokenType: res.tokenType ?? 'Bearer',
+      expiresIn: res.expiresIn ?? 3600,
+      user,
+    };
   }
 }
