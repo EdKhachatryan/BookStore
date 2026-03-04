@@ -258,9 +258,9 @@ Material default theme colors are overridden to match custom design tokens.
 
 See separate file:
 
-```
-ANGULAR_MIGRATION.md
-```
+
+[ANGULAR MIGRATION](ANGULAR_Migration.md)
+
 
 ---
 
