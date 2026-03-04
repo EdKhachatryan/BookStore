@@ -9,7 +9,7 @@ OpenAPI integration, JWT authentication, and a custom Node.js mock backend.
 
 ## Frontend
 
-- Angular 19 (Standalone APIs)
+- Angular 21 (Standalone APIs)
 - Angular Signals (state management)
 - Angular Material (custom themed)
 - RxJS
